@@ -11,9 +11,9 @@ export function submitSearchCriteria(url, history, skillRequirement, totalExperi
                 role
             }
         }).then(response => {
-            console.log('Response of search criteria submission API: ' + JSON.stringify(response));
             dispatch(setSearchResult(response.data));
             history.push('/candidates')
+            console.log('Response of search criteria submission API: ' + JSON.stringify(response));
         }).catch(error => {
             console.error('Error in search criteria submission API : ' + JSON.stringify(error));
         });
