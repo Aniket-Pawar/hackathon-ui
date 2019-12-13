@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCandidateList } from '../../Candidate/CandidateList/Redux/Actions';
+import { setSearchResult } from '../../Candidate/CandidateList/Redux/Actions';
 
 export function submitSearchCriteria(url, history, skillRequirement, totalExperience, highestEducation, role) {
     return (dispatch) => {
@@ -12,7 +12,7 @@ export function submitSearchCriteria(url, history, skillRequirement, totalExperi
             }
         }).then(response => {
             console.log('Response of search criteria submission API: ' + JSON.stringify(response));
-            dispatch(setCandidateList(response.data));
+            dispatch(setSearchResult(response.data));
             history.push('/candidates')
         }).catch(error => {
             console.error('Error in search criteria submission API : ' + JSON.stringify(error));

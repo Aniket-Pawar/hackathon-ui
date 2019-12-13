@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { SET_CANDIDATE_LIST } from './Constants';
+import { SET_SEARCH_RESULT } from './Constants';
 
-export function setCandidateList(candidateList) {
+export function setSearchResult(searchResult) {
     return {
-        type: SET_CANDIDATE_LIST,
-        candidateList
+        type: SET_SEARCH_RESULT,
+        searchResult
     }
 }

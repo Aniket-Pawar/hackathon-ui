@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
+
+const candidateProperties = ['name', 'score'];
 
 class CandidateListContainer extends Component {
 
@@ -9,36 +10,47 @@ class CandidateListContainer extends Component {
         console.log('Analysing shortlisted candidates further...');
     }
 
+    constructTableRow = (searchResult) => {
+        let organisedCandidateList = [];
+        let candidateObj = {};
+        if (searchResult && searchResult.score && searchResult.score && searchResult.score.length) {
+            searchResult.score.forEach((candidate, candidateIndex) => {
+                let index = 0;
+                candidate.forEach(fieldValue => {
+                    if (index < candidateProperties.length) {
+                        const propertyName = candidateProperties[index];
+                        index++;
+                        if (propertyName == 'score') {
+                            fieldValue = Math.ceil(fieldValue);
+                        }
+                        candidateObj[propertyName] = fieldValue;
+                    }
+                });
+                candidateObj.id = candidateIndex + 1;
+                organisedCandidateList.push(candidateObj);
+                candidateObj = {};
+            });
+        }
+        return organisedCandidateList;
+    }
+
     render() {
-        const { candidateList } = this.props;
+        const constructedCandidateList = this.constructTableRow(this.props.searchResult);
         const columnsMetadata = [
             {
                 name: 'ID',
                 selector: 'id',
-                sortable: true,
-                cell: row => <div style={{ fontWeight: 700 }}><Link to={`/employee/${row.id}`} >{row.id}</Link></div>
+                sortable: true
             },
             {
-                name: 'First Name',
-                selector: 'first_name',
-                sortable: true,
+                name: 'Name',
+                selector: 'name',
+                sortable: true
             },
             {
-                name: 'Last Name',
-                selector: 'last_name',
+                name: 'Score',
+                selector: 'score',
                 sortable: true,
-                right: true,
-            },
-            {
-                name: 'Age',
-                selector: 'age',
-                sortable: true,
-            },
-            {
-                name: 'Manager ID',
-                selector: 'manager_id',
-                sortable: true,
-                right: true,
             }
         ];
 
@@ -50,10 +62,10 @@ class CandidateListContainer extends Component {
                     </span>
                     <DataTable
                         columns={columnsMetadata}
-                        data={candidateList} />
+                        data={constructedCandidateList} />
                 </div>
                 <div class="text-center">
-                    <button type="button" className="btn btn-primary" disabled={!candidateList.length} onClick={this.handleRankingOfCandidates}>Analyse</button>
+                    <button type="button" className="btn btn-primary" disabled={!constructedCandidateList.length} onClick={this.handleRankingOfCandidates}>Analyse</button>
                 </div>
             </div>
         );
@@ -62,7 +74,7 @@ class CandidateListContainer extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        candidateList: state.candidateList || []
+        searchResult: state.searchResult || {}
     }
 };
 
