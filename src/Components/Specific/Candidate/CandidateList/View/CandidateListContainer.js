@@ -7,6 +7,8 @@ const candidateProperties = ['name', 'score'];
 class CandidateListContainer extends Component {
 
     handleRankingOfCandidates = () => {
+        const {history} = this.props;
+        history.push('/analysis');
         console.log('Analysing shortlisted candidates further...');
     }
 
@@ -20,7 +22,7 @@ class CandidateListContainer extends Component {
                     if (index < candidateProperties.length) {
                         const propertyName = candidateProperties[index];
                         index++;
-                        if (propertyName == 'score') {
+                        if (propertyName === 'score') {
                             fieldValue = Math.ceil(fieldValue);
                         }
                         candidateObj[propertyName] = fieldValue;
