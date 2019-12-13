@@ -27,6 +27,7 @@ class SeachCriteriaContainer extends Component {
     handleSearchCriteriaSubmission = () => {
         const { skillRequirement, role, totalExperience, highestEducation } = this.props
         this.props.submitSearchCriteria('http://42.106.196.224:5000/resume/compare', skillRequirement, totalExperience, highestEducation, role);
+        this.props.reset();
     }
 
     handleReset = () => {
@@ -49,7 +50,7 @@ class SeachCriteriaContainer extends Component {
         const { pristine, submitting, invalid } = this.props
         return (
             <div className="searchContainerAlignment">
-                <form onSubmit={this.handleSearchCriteriaSubmission}>
+                <form>
                     <div className="form-group">
                         <Field name="skillRequirement" component={this.renderField} label="Skill Requirement" />
                     </div>
@@ -63,7 +64,7 @@ class SeachCriteriaContainer extends Component {
                         <Field name="role" component={this.renderField} label="Role" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary" disabled={invalid || pristine || submitting}>Search</button>
+                        <button type="button" className="btn btn-primary" disabled={invalid || pristine || submitting} onClick={this.handleSearchCriteriaSubmission}>Search</button>
                         <button type="button" className="btn btn-primary resetButtonAlignment" disabled={pristine} onClick={this.handleReset}>Reset</button>
                     </div>
                 </form>
