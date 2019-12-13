@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
+import './CandidateListStyle.css';
 
 const candidateProperties = ['name', 'score'];
 
 class CandidateListContainer extends Component {
 
     handleRankingOfCandidates = () => {
-        const {history} = this.props;
-        history.push('/analysis');
+        this.props.history.push('/analysis');
         console.log('Analysing shortlisted candidates further...');
+    }
+
+    navigateBack = () => {
+        this.props.history.push('/');
     }
 
     constructTableRow = (searchResult) => {
@@ -68,6 +72,7 @@ class CandidateListContainer extends Component {
                 </div>
                 <div class="text-center">
                     <button type="button" className="btn btn-primary" disabled={!constructedCandidateList.length} onClick={this.handleRankingOfCandidates}>Analyse</button>
+                    <button type="button" className="btn btn-primary backButtonAlignment" onClick={this.navigateBack}>Back</button>
                 </div>
             </div>
         );
