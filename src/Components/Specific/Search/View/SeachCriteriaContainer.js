@@ -25,8 +25,8 @@ const validate = values => {
 class SeachCriteriaContainer extends Component {
 
     handleSearchCriteriaSubmission = () => {
-        const { skillRequirement, role, totalExperience, highestEducation } = this.props
-        this.props.submitSearchCriteria('http://42.106.196.224:5000/resume/compare', skillRequirement, totalExperience, highestEducation, role);
+        const { skillRequirement, role, totalExperience, highestEducation, history } = this.props
+        this.props.submitSearchCriteria('http://42.106.196.224:5000/resume/compare', history, skillRequirement, totalExperience, highestEducation, role);
         this.props.reset();
     }
 
@@ -86,7 +86,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    submitSearchCriteria: (url, skillRequirement, totalExperience, highestEducation, role) => dispatch(submitSearchCriteria(url, skillRequirement, totalExperience, highestEducation, role))
+    submitSearchCriteria: (url, history, skillRequirement, totalExperience, highestEducation, role) => dispatch(submitSearchCriteria(url, history, skillRequirement, totalExperience, highestEducation, role))
 });
 
 export default connect(

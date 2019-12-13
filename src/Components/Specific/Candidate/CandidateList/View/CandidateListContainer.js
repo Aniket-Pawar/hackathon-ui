@@ -5,12 +5,12 @@ import DataTable from 'react-data-table-component';
 
 class CandidateListContainer extends Component {
 
-    handleCreateNewEmployee = () => {
-        console.log('Creating new employees');
+    handleRankingOfCandidates = () => {
+        console.log('Analysing shortlisted candidates further...');
     }
 
     render() {
-        const { employeeList } = this.props;
+        const { candidateList } = this.props;
         const columnsMetadata = [
             {
                 name: 'ID',
@@ -44,16 +44,16 @@ class CandidateListContainer extends Component {
 
         return (
             <div>
-                <span className="createEmployeeButtonPosition">
-                    <button type="button" onCLick={this.handleCreateNewEmployee}>Create New Employee</button>
-                </span>
                 <div className="employeeListContainer">
                     <span>
-                        List of Employees
-                </span>
+                        List of matching candidates
+                    </span>
                     <DataTable
                         columns={columnsMetadata}
-                        data={employeeList} />
+                        data={candidateList} />
+                </div>
+                <div class="text-center">
+                    <button type="button" className="btn btn-primary" disabled={!candidateList.length} onClick={this.handleRankingOfCandidates}>Analyse</button>
                 </div>
             </div>
         );
@@ -62,7 +62,7 @@ class CandidateListContainer extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        candidateList: state.employeeList
+        candidateList: state.candidateList || []
     }
 };
 
