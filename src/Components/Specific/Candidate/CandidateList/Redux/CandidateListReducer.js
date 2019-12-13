@@ -1,14 +1,14 @@
-import {SET_EMPLOYEE_LIST} from './Constants';
+import {SET_CANDIDATE_LIST} from './Constants';
 
 const initialState = [];
 
-const employeeList = (state = initialState, action) => {
+const candidateList = (state = initialState, action) => {
     switch (action.type) {
-        case SET_EMPLOYEE_LIST:
-            return action.employeeList
+        case SET_CANDIDATE_LIST:
+            return action.candidateList
         default:
             return state;
     }
 }
 
-export default employeeList;
+export default candidateList;

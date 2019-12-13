@@ -2,13 +2,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
-import { fetchEmployeeList } from '../Redux/Actions';
 
 class CandidateListContainer extends Component {
-
-    componentDidMount() {
-        this.props.fetchEmployeeList('http://10.20.8.145:8080/app/employees');
-    }
 
     handleCreateNewEmployee = () => {
         console.log('Creating new employees');
@@ -67,12 +62,8 @@ class CandidateListContainer extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        employeeList: state.employeeList
+        candidateList: state.employeeList
     }
 };
 
-const mapDispatchToProps = dispatch => ({
-    fetchEmployeeList: (url) => dispatch(fetchEmployeeList(url))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CandidateListContainer);
+export default connect(mapStateToProps, null)(CandidateListContainer);
