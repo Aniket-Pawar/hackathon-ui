@@ -29,7 +29,7 @@ class CandidateListContainer extends Component {
                         const propertyName = candidateProperties[index];
                         index++;
                         if (propertyName === 'score') {
-                            fieldValue = Math.ceil(fieldValue);
+                            fieldValue = fieldValue.toFixed(2);
                         }
                         candidateObj[propertyName] = fieldValue;
                     }
@@ -74,7 +74,7 @@ class CandidateListContainer extends Component {
                 </div>
                 <div class="text-center">
                     <button type="button" className="btn btn-primary" disabled={!constructedCandidateList.length} onClick={this.handleRankingOfCandidates}>Analyse</button>
-                    <button type="button" className="btn btn-primary backButtonAlignment" onClick={this.navigateBack}>Back</button>
+                    <button type="button" className="btn btn-primary backButtonAlignment" onClick={this.navigateBack}>Back To Home</button>
                 </div>
             </div>
         );

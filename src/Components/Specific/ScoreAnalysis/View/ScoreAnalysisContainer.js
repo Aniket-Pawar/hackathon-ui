@@ -9,7 +9,7 @@ class ScoreAnalysisContainer extends Component {
         return (
             <div>
                 <CandidateInformationContainer/>
-                <StackedBarContainer />
+                <StackedBarContainer {...this.props}/>
             </div>
         );
     }

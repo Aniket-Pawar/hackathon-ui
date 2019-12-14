@@ -5,9 +5,7 @@ class CandidateInformationContainer extends Component {
 
     render() {
         return (
-            <div>
-                I am Maharaj
-            </div>
+            <div/>
         );
     }
 }

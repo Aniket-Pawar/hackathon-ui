@@ -2,7 +2,7 @@ import { SET_SEARCH_RESULT, SET_ANALYSIS_RESULT } from './Constants';
 
 const initialState = {
    searchData: {},
-   analysisData: {}
+   analysisData: []
 };
 
 const searchResult = (state = initialState, action) => {
