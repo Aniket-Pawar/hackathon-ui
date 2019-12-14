@@ -63,7 +63,7 @@ class SeachCriteriaContainer extends Component {
                     <div className="form-group">
                         <Field name="role" component={this.renderField} label="Role" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group buttonSectionAlignment">
                         <button type="button" className="btn btn-primary" disabled={invalid || pristine || submitting} onClick={this.handleSearchCriteriaSubmission}>Search</button>
                         <button type="button" className="btn btn-primary resetButtonAlignment" disabled={pristine} onClick={this.handleReset}>Reset</button>
                     </div>
