@@ -1,11 +1,20 @@
-import { SET_SEARCH_RESULT } from './Constants';
+import { SET_SEARCH_RESULT, SET_ANALYSIS_RESULT } from './Constants';
 
-const initialState = { "paths": ["MeghnaLohani.pdf", "AmanSharma.pdf", "Chandler.pdf", "RESUME SCORING USING NLP.pdf"], "score": [["Campus Address ", 0.17745439734093024], ["Aman Sharma ", 0.13982319420709519], ["Chandler Bing ", 0.13268429255148464], ["RESUME SCORING USING NLP ", 0.1110148599872917]] };
+const initialState = {
+   searchData: {},
+   analysisData: {}
+};
 
 const searchResult = (state = initialState, action) => {
    switch (action.type) {
-      case SET_SEARCH_RESULT:
-         return action.searchResult
+      case SET_SEARCH_RESULT: {
+         const updatedState = { ...state, searchData: action.searchResult };
+         return updatedState;
+      }
+      case SET_ANALYSIS_RESULT: {
+         const updatedState = { ...state, analysisData: action.analysisResult };
+         return updatedState;
+      }
       default:
          return state;
    }

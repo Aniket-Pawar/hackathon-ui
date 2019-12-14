@@ -2,13 +2,15 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import './CandidateListStyle.css';
+import { analyseCandidates } from '../Redux/Actions';
 
 const candidateProperties = ['name', 'score'];
 
 class CandidateListContainer extends Component {
 
     handleRankingOfCandidates = () => {
-        this.props.history.push('/analysis');
+        const { history } = this.props;
+        this.props.analyseCandidates('http://localhost:5000/resume/analysis', history);
         console.log('Analysing shortlisted candidates further...');
     }
 
@@ -81,8 +83,12 @@ class CandidateListContainer extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        searchResult: state.searchResult || {}
+        searchResult: state.searchResult.searchData || {}
     }
 };
 
-export default connect(mapStateToProps, null)(CandidateListContainer);
+const mapDispatchToProps = dispatch => ({
+    analyseCandidates: (url, history) => dispatch(analyseCandidates(url, history))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateListContainer);

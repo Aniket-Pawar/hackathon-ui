@@ -26,7 +26,7 @@ class SeachCriteriaContainer extends Component {
 
     handleSearchCriteriaSubmission = () => {
         const { skillRequirement, role, totalExperience, highestEducation, history } = this.props
-        this.props.submitSearchCriteria('http://42.106.196.224:5000/resume/compare', history, skillRequirement, totalExperience, highestEducation, role);
+        this.props.submitSearchCriteria('http://localhost:5000/resume/compare', history, skillRequirement, totalExperience, highestEducation, role);
         this.props.reset();
     }
 
