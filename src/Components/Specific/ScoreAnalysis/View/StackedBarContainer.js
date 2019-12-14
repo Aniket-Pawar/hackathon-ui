@@ -18,23 +18,25 @@ class StackedBarContainer extends SampleBase {
 
     constructStructuredData = (data) => {
         let analysisDataList = new Array();
+        data = Object.entries(data);
+        data.forEach(ele => ele.shift());
         if (data.length) {
             let record = new Array();
             data.forEach(element => {
-                if (element.SkillCount !== null && element.SkillCount[0] !== null) {
-                    record.push({ x: 'Skill', y: element.SkillCount[0] })
+                if (element[0] != null && element[0].SkillCount != null && element[0].SkillCount[0] != null) {
+                    record.push({ x: 'Skill', y: element[0].SkillCount[0] })
                 }
-                if (element.TechCount !== null && element.TechCount[0] !== null) {
-                    record.push({ x: 'Technology', y: element.TechCount[0] })
+                if (element[0] != null && element[0].TechCount != null && element[0].TechCount[0] != null) {
+                    record.push({ x: 'Technology', y: element[0].TechCount[0] })
                 }
-                if (element.Leadership !== null && element.Leadership[0] !== null) {
-                    record.push({ x: 'Leadership', y: element.Leadership[0] })
+                if (element[0] != null && element[0].Leadership != null && element[0].Leadership[0] != null) {
+                    record.push({ x: 'Leadership', y: element[0].Leadership[0] * 100})
                 }
-                if (element.RolesAndResponsibility !== null && element.RolesAndResponsibility[0] !== null) {
-                    record.push({ x: 'Responsibility', y: element.RolesAndResponsibility[0] })
+                if (element[0] != null && element[0].RolesAndResponsibility != null && element[0].RolesAndResponsibility[0] != null) {
+                    record.push({ x: 'Responsibility', y: element[0].RolesAndResponsibility[0] })
                 }
-                if (element.FinalScore !== null && element.FinalScore[0] !== null) {
-                    record.push({ x: 'Excellence rate', y: element.FinalScore[0] })
+                if (element[0] != null && element[0].FinalScore != null && element[0].FinalScore[0] != null) {
+                    record.push({ x: 'Excellence rate', y: element[0].FinalScore[0] })
                 }
                 analysisDataList.push(record);
                 record = [];
